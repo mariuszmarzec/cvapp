@@ -4,19 +4,26 @@ import androidx.annotation.StringRes
 import com.marzec.cv.R
 import com.marzec.cv.domain.model.Cv
 import com.marzec.cv.common.Image
+import com.marzec.cv.common.ResourceImage
 import com.marzec.cv.common.StringProvider
 import com.marzec.cv.common.UrlImage
+import com.marzec.cv.domain.model.Education
+import com.marzec.cv.domain.model.Experience
 import com.marzec.cv.views.delegates.SectionHeaderDelegate
+import com.marzec.cv.views.delegates.TextRowWithImageDelegate
 import com.marzec.cv.views.model.ListItemView
+import java.lang.IllegalArgumentException
+import java.lang.StringBuilder
 import javax.inject.Inject
 
 interface HomeScreenMapper {
 
     fun mapItems(cv: Cv): HomeScreenContent
 }
+
 class HomeScreenMapperImpl @Inject constructor(
     private val stringProvider: StringProvider
-): HomeScreenMapper {
+) : HomeScreenMapper {
     override fun mapItems(cv: Cv): HomeScreenContent {
         return HomeScreenContent(createHeaderModel(cv), createContent(cv))
     }
@@ -24,11 +31,82 @@ class HomeScreenMapperImpl @Inject constructor(
     private fun createContent(cv: Cv): MutableList<ListItemView> {
         val items = mutableListOf<ListItemView>()
 
-        items += createSectionModel(R.string.section_header_expierence, showTopDivider = false)
-        items += createSectionModel(R.string.section_header_education, showTopDivider = true)
-        items += createSectionModel(R.string.section_header_skills, showTopDivider = true)
+        items += createHeaderModel(R.string.section_header_expierence, showTopDivider = false)
+        items += createExperienceSection(cv.experience)
+        items += createHeaderModel(R.string.section_header_education, showTopDivider = true)
+        items += createEducationSection(cv.education)
+        items += createHeaderModel(R.string.section_header_skills, showTopDivider = true)
         items += createSkillsModel(cv.skills)
         return items
+    }
+
+    private fun createExperienceSection(experience: List<Experience>): List<ListItemView> {
+        return experience.mapIndexed { index, company ->
+            when {
+                company.positions.isEmpty() -> {
+                    throw IllegalArgumentException("Position has to have at least one element")
+                }
+                company.positions.size == 1 -> {
+                    val position = company.positions.first()
+                    listOf(
+                        TextRowWithImageDelegate.Model(
+                            image = UrlImage(company.imageUrl),
+                            title = company.company,
+                            subtitle = position.position,
+                            showTopDivider = index > 0,
+                            text = StringBuilder()
+                                .append(position.start)
+                                .append(" - ")
+                                .append(
+                                    position.end
+                                        ?: stringProvider.getString(R.string.time_period_present)
+                                )
+                                .append("\n")
+                                .append(company.location)
+                                .append("\n")
+                                .append(position.responsibility)
+                                .toString()
+                        )
+                    )
+                }
+                else -> {
+                    listOf(
+                        TextRowWithImageDelegate.Model(
+                            image = UrlImage(company.imageUrl),
+                            title = company.company,
+                            subtitle = company.location,
+                            showTopDivider = index > 0
+                        )
+                    ) + company.positions.map {  position ->
+                        TextRowWithImageDelegate.Model(
+                            image = ResourceImage(R.drawable.ic_point_black_24dp),
+                            title = position.position,
+                            subtitle =  StringBuilder()
+                                .append(position.start)
+                                .append(" - ")
+                                .append(position.end ?: stringProvider.getString(R.string.time_period_present))
+                                .toString(),
+                            text = position.responsibility,
+                            showTopDivider = index > 0
+                        )
+                    }
+                }
+            }
+        }.flatten()
+    }
+
+    private fun createEducationSection(education: List<Education>): List<ListItemView> {
+        return education.mapIndexed { index, school ->
+            TextRowWithImageDelegate.Model(
+                image = UrlImage(school.imageUrl),
+                title = school.school,
+                subtitle = school.degree,
+                text = StringBuilder().append(school.fieldOfStudy).append("\n")
+                    .append(school.startYear).append(" - ").append(school.endYear)
+                    .toString(),
+                showTopDivider = index > 0
+            )
+        }
     }
 
     private fun createSkillsModel(skills: List<String>): ListItemView {
@@ -43,7 +121,10 @@ class HomeScreenMapperImpl @Inject constructor(
 
     }
 
-    private fun createSectionModel(@StringRes titleResId: Int, showTopDivider: Boolean): SectionHeaderDelegate.Model {
+    private fun createHeaderModel(
+        @StringRes titleResId: Int,
+        showTopDivider: Boolean
+    ): SectionHeaderDelegate.Model {
         return SectionHeaderDelegate.Model(
             stringProvider.getString(titleResId),
             textColorResId = R.color.black,

@@ -14,9 +14,7 @@
         app:layoutDescription="@xml/scene">
 
         <include
-            layout="@layout/fragment_home_header"
-            tools:layout_editor_absoluteX="-1dp"
-            tools:layout_editor_absoluteY="0dp" />
+            layout="@layout/fragment_home_header" />
 
         <include layout="@layout/fragment_home_content" />
 

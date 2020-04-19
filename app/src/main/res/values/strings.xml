@@ -4,4 +4,5 @@
     <string name="section_header_expierence">Experience</string>
     <string name="section_header_education">Education</string>
     <string name="section_header_skills">Skills</string>
+    <string name="time_period_present">Present</string>
 </resources>
