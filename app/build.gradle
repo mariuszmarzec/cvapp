@@ -34,6 +34,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$appcompat_version"
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.google.android.material:material:$material_version"
     implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
     implementation "com.google.code.gson:gson:$gson_version"
@@ -49,6 +50,7 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     kapt "com.google.dagger:dagger-android-processor:$dagger_version"
 
+    testImplementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junit5_version"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit5_version"
     testImplementation "org.mockito:mockito-core:$mockito_version"

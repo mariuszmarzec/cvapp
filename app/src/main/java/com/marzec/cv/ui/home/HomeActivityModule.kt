@@ -9,6 +9,6 @@ import dagger.android.ContributesAndroidInjector
 abstract class HomeActivityModule {
 
     @FragmentScope
-    @ContributesAndroidInjector(modules = [ConverterFragmentModule::class])
+    @ContributesAndroidInjector(modules = [HomeFragmentModule::class])
     abstract fun bindConvertFragment() : HomeFragment
 }

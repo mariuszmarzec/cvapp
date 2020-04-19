@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scrollable"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="vel enim turpis. Aenean suscipit neque et nisi varius, eu rhoncus dolor convallis. Fusce sit amet lacus non enim tempor commodo et sit amet velit. Suspendisse dui ligula, tincidunt a pretium a, dictum eget nulla. Nam vitae mi malesuada, molestie turpis ut, tristique elit. Morbi congue commodo odio, nec scelerisque metus. Mauris eget rutrum orci. Donec a leo laoreet lorem pretium aliquet. Vivamus porttitor in eros eget sodales.
+
+Maecenas lobortis leo sit amet tempus finibus. Praesent aliquam urna sed urna aliquet malesuada eget ac libero. Integer vel tortor vulputate, ultricies ipsum ut, aliquam tortor. Mauris at tortor imperdiet, ullamcorper magna eget, tincidunt massa. Phasellus fermentum turpis eros, non consequat metus semper vitae. Etiam rutrum sollicitudin fringilla. Vivamus a venenatis nibh. Praesent tincidunt vestibulum quam, id venenatis odio tristique quis. Integer rutrum, purus ut faucibus cursus, justo neque porttitor eros, id ornare mi dui a mi. Vivamus id congue nibh. Proin ultricies consectetur nisl eu ultrices.
+
+Sed posuere purus et vestibulum fringilla. Suspendisse tempus orci turpis, consectetur porta risus ultricies sagittis. Donec molestie ex a quam venenatis, quis rutrum sapien semper. Praesent non dictum metus. Phasellus elementum lacinia ligula, eget malesuada ante porta vel. Suspendisse sit amet cursus massa, non tincidunt metus. Fusce fermentum faucibus quam eget egestas. Mauris ac molestie metus. Sed nec magna velit. Nulla luctus ante massa, a faucibus eros fringilla in. Nulla quis rutrum purus, quis porta elit. Praesent sagittis erat urna, at venenatis velit cursus eget. Donec sit amet ligula nunc.
+
+Duis turpis neque, consequat ac convallis sed, fringilla at ex. Proin fringilla lorem vitae ex congue porta. Quisque ex risus, feugiat sit amet leo in, imperdiet aliquet diam. Etiam ultrices, nunc in iaculis vulputate, lorem urna eleifend enim, vitae mattis lacus turpis sit amet odio. Curabitur congue urna in leo tincidunt, sed lacinia mauris bibendum. Quisque nec metus pharetra, pulvinar odio sed, tincidunt ligula. Vivamus pretium vulputate tristique. Duis tempor vehicula auctor. Nunc in pulvinar ex.
+
+Donec tempor lacus quis eros rutrum mattis. In ornare justo viverra risus convallis, eu molestie augue aliquam. Nunc non ipsum non eros lobortis egestas. Vestibulum pellentesque sed purus nec auctor. Phasellus dignissim leo est, non pharetra urna interdum et. Curabitur tristique accumsan condimentum. In hac habitasse platea dictumst. Duis commodo neque odio, at tempus massa laoreet in. Integer fringilla gravida mollis. Aliquam aliquam, elit iaculis eleifend porttitor, purus dolor bibendum nibh, a ornare elit risus eu leo. Suspendisse nec nunc eget massa suscipit blandit eget at diam. Nunc ornare in nulla nec ultricies. In cursus egestas tortor, ac sagittis lacus volutpat condimentum. Donec feugiat ligula ipsum, sed mollis augue accumsan quis. Vestibulum elementum risus est, sed consequat neque sagittis vel. "
+        />
+
+</androidx.core.widget.NestedScrollView>

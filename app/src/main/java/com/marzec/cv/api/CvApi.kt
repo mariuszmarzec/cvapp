@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface CvApi {
 
-    @GET("/cv.json")
+    @GET("cv")
     fun getCv(): Single<CvDto>
 }
