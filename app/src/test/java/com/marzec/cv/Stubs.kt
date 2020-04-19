@@ -59,7 +59,7 @@ fun stubPosition(
     position: String = "",
     start: String = "",
     end: String? = "",
-    responsibility: String
+    responsibility: String = ""
 ) = Position(
     position = position, start = start, end = end, responsibility = responsibility
 )

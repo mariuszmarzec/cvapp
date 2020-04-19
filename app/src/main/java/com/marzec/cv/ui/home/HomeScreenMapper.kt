@@ -77,7 +77,7 @@ class HomeScreenMapperImpl @Inject constructor(
                             subtitle = company.location,
                             showTopDivider = index > 0
                         )
-                    ) + company.positions.map {  position ->
+                    ) + company.positions.mapIndexed { positionIndex, position ->
                         TextRowWithImageDelegate.Model(
                             image = ResourceImage(R.drawable.ic_point_black_24dp),
                             title = position.position,
@@ -87,7 +87,7 @@ class HomeScreenMapperImpl @Inject constructor(
                                 .append(position.end ?: stringProvider.getString(R.string.time_period_present))
                                 .toString(),
                             text = position.responsibility,
-                            showTopDivider = index > 0
+                            showTopDivider = positionIndex > 0
                         )
                     }
                 }
@@ -148,7 +148,7 @@ class HomeScreenMapperImpl @Inject constructor(
 
 data class HomeScreenContent(
     val header: HeaderModel,
-    val viewItems: MutableList<ListItemView>
+    val viewItems: List<ListItemView>
 )
 
 data class HeaderModel(
