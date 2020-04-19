@@ -3,9 +3,9 @@ package com.marzec.cv
 import com.marzec.cv.domain.model.*
 import com.marzec.cv.ui.home.HeaderModel
 import com.marzec.cv.ui.home.HomeScreenContent
-import com.marzec.cv.views.model.Image
+import com.marzec.cv.common.Image
 import com.marzec.cv.views.model.ListItemView
-import com.marzec.cv.views.model.UrlImage
+import com.marzec.cv.common.UrlImage
 
 fun stubCv(
     firstName: String = "",
@@ -73,7 +73,9 @@ fun stubHomeScreenContent(
 )
 
 fun stubHeaderModel(
-    image: Image = UrlImage(""),
+    image: Image = UrlImage(
+        ""
+    ),
     fulName: String = "",
     email: String = "",
     phoneNumber: String = ""

@@ -2,7 +2,7 @@ package com.marzec.cv.ui.home
 
 import com.marzec.cv.stubCv
 import com.marzec.cv.stubHeaderModel
-import com.marzec.cv.views.model.UrlImage
+import com.marzec.cv.common.UrlImage
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*

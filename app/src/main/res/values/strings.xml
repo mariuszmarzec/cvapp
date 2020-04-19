@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Mariusz Marzec CV</string>
     <string name="cv">Curriculum Vitae</string>
+    <string name="section_header_expierence">Experience</string>
+    <string name="section_header_education">Education</string>
+    <string name="section_header_skills">Skills</string>
 </resources>

@@ -1,12 +1,17 @@
 package com.marzec.cv.ui.home
 
 import android.os.Bundle
-import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.marzec.cv.R
 import com.marzec.cv.base.BaseFragment
-import com.marzec.cv.views.ImageLoader
+import com.marzec.cv.common.ImageLoader
+import com.marzec.cv.views.delegates.DelegateAdapter
+import com.marzec.cv.views.delegates.DelegateManager
+import com.marzec.cv.views.delegates.SectionHeaderDelegate
+import com.marzec.cv.views.delegates.TextRowWithImageDelegate
 import com.marzec.cv.views.model.ListItemView
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_home_content.*
 import kotlinx.android.synthetic.main.fragment_home_header.*
 import javax.inject.Inject
 
@@ -18,8 +23,19 @@ class HomeFragment
     @Inject
     lateinit var imageLoader: ImageLoader
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    private val adapter by lazy {
+        DelegateAdapter(
+            DelegateManager()
+                .add(SectionHeaderDelegate())
+                .add(TextRowWithImageDelegate(imageLoader))
+        )
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.adapter = adapter
+
     }
 
     override fun showError() {
@@ -42,6 +58,6 @@ class HomeFragment
     }
 
     override fun setContent(items: List<ListItemView>) {
-        // TODO
+        adapter.items = items
     }
 }
