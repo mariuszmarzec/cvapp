@@ -4,9 +4,24 @@ import android.content.Context
 import dagger.Binds
 import dagger.Module
 import com.marzec.cv.App
+import com.marzec.cv.views.DefaultImageLoader
+import com.marzec.cv.views.ImageLoader
+import com.squareup.picasso.Picasso
+import dagger.Provides
 
 @Module
-interface AppModule {
+abstract class AppModule {
     @Binds
-    fun bindContext(application: App): Context
+    abstract fun bindContext(application: App): Context
+
+    @Binds
+    abstract fun bindImageDisplayer(defaultImageLoader: DefaultImageLoader): ImageLoader
+
+    @Module
+    companion object {
+
+        @Provides
+        @JvmStatic
+        fun providePicasso(): Picasso = Picasso.get()
+    }
 }

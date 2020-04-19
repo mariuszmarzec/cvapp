@@ -5,50 +5,61 @@
     android:id="@+id/headerContainer"
     android:layout_width="match_parent"
     android:layout_height="132dp"
-    android:background="#1e376b"
+    android:elevation="1dp"
     app:layoutDescription="@xml/scene"
     tools:showPaths="true">
 
-    <View
+    <ImageView
         android:id="@+id/photo"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:background="@color/colorAccent"
         android:scaleType="centerCrop"
         android:layout_marginStart="@dimen/default_padding"
+        />
+
+    <TextView
+        android:id="@+id/cvHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:text="@string/cv"
+        android:layout_marginStart="@dimen/default_padding"
+        android:layout_marginEnd="@dimen/default_padding"
+        tools:text="Test text"
         />
 
     <TextView
         android:id="@+id/fullName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Monterey"
-        android:textColor="#FFF"
+        android:textColor="@color/black"
         android:textSize="14sp"
         android:layout_marginStart="@dimen/default_padding"
         android:layout_marginEnd="@dimen/default_padding"
+        tools:text="Test text"
         />
 
     <TextView
         android:id="@+id/email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="California"
-        android:textColor="#FFF"
+        android:textColor="@color/black"
         android:textSize="14sp"
         android:layout_marginStart="@dimen/default_padding"
         android:layout_marginEnd="@dimen/default_padding"
+        tools:text="Test text"
         />
 
     <TextView
         android:id="@+id/phone"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="California"
-        android:textColor="#FFF"
+        android:textColor="@color/black"
         android:textSize="14sp"
         android:layout_marginStart="@dimen/default_padding"
         android:layout_marginEnd="@dimen/default_padding"
+        tools:text="Test text"
         />
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

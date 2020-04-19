@@ -3,7 +3,9 @@ package com.marzec.cv
 import com.marzec.cv.domain.model.*
 import com.marzec.cv.ui.home.HeaderModel
 import com.marzec.cv.ui.home.HomeScreenContent
+import com.marzec.cv.views.model.Image
 import com.marzec.cv.views.model.ListItemView
+import com.marzec.cv.views.model.UrlImage
 
 fun stubCv(
     firstName: String = "",
@@ -70,6 +72,16 @@ fun stubHomeScreenContent(
     viewItems
 )
 
-fun stubHeaderModel(): HeaderModel {
-    return HeaderModel("")
+fun stubHeaderModel(
+    image: Image = UrlImage(""),
+    fulName: String = "",
+    email: String = "",
+    phoneNumber: String = ""
+): HeaderModel {
+    return HeaderModel(
+        image = image,
+        fulName = fulName,
+        email = email,
+        phoneNumber = phoneNumber
+    )
 }

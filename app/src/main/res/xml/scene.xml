@@ -32,12 +32,26 @@
             />
 
         <Constraint
-            android:id="@id/fullName"
+            android:id="@+id/cvHeader"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:layout_marginStart="@dimen/default_padding"
             android:layout_marginEnd="@dimen/default_padding"
             motion:layout_constraintTop_toTopOf="@id/photo"
+            motion:layout_constraintBottom_toTopOf="@+id/fullName"
+            motion:layout_constraintLeft_toRightOf="@id/photo"
+            motion:layout_constraintRight_toRightOf="parent"
+            />
+
+        <Constraint
+            android:id="@id/fullName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginStart="@dimen/default_padding"
+            android:layout_marginEnd="@dimen/default_padding"
+            motion:layout_constraintTop_toBottomOf="@id/cvHeader"
             motion:layout_constraintBottom_toTopOf="@+id/email"
             motion:layout_constraintLeft_toRightOf="@id/photo"
             motion:layout_constraintRight_toRightOf="parent"
@@ -48,8 +62,7 @@
             android:id="@+id/email"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="California"
-            android:textColor="#FFF"
+            android:textColor="@color/black"
             android:textSize="14sp"
             android:layout_marginStart="@dimen/default_padding"
             android:layout_marginEnd="@dimen/default_padding"
@@ -63,8 +76,7 @@
             android:id="@+id/phone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="California"
-            android:textColor="#FFF"
+            android:textColor="@color/black"
             android:textSize="14sp"
             android:layout_marginStart="@dimen/default_padding"
             android:layout_marginEnd="@dimen/default_padding"
@@ -101,14 +113,31 @@
             />
 
         <Constraint
-            android:id="@id/fullName"
+            android:id="@+id/cvHeader"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:layout_marginStart="@dimen/default_padding"
             android:layout_marginEnd="@dimen/default_padding"
             motion:layout_constraintTop_toTopOf="@id/photo"
             motion:layout_constraintBottom_toBottomOf="@id/photo"
             motion:layout_constraintLeft_toRightOf="@id/photo"
+            motion:layout_constraintRight_toRightOf="parent"
+            />
+
+        <Constraint
+            android:id="@id/fullName"
+            android:layout_width="0dp"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:layout_marginStart="@dimen/default_padding"
+            android:layout_marginEnd="@dimen/default_padding"
+            motion:layout_constraintTop_toBottomOf="@id/cvHeader"
+            motion:layout_constraintBottom_toTopOf="@+id/email"
+            motion:layout_constraintLeft_toRightOf="@id/photo"
+            motion:layout_constraintRight_toRightOf="parent"
             >
         </Constraint>
 
@@ -117,8 +146,7 @@
             android:id="@+id/email"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="California"
-            android:textColor="#FFF"
+            android:textColor="@color/black"
             android:textSize="14sp"
             android:visibility="invisible"
             android:layout_marginStart="@dimen/default_padding"
@@ -133,9 +161,8 @@
             android:id="@+id/phone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="California"
-            android:textColor="#FFF"
             android:textSize="14sp"
+            android:textColor="@color/black"
             android:visibility="invisible"
             android:layout_marginStart="@dimen/default_padding"
             android:layout_marginEnd="@dimen/default_padding"

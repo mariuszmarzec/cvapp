@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -12,7 +13,11 @@
         android:layout_height="match_parent"
         app:layoutDescription="@xml/scene">
 
-        <include layout="@layout/fragment_home_header" />
+        <include
+            layout="@layout/fragment_home_header"
+            tools:layout_editor_absoluteX="-1dp"
+            tools:layout_editor_absoluteY="0dp" />
+
         <include layout="@layout/fragment_home_content" />
 
     </androidx.constraintlayout.motion.widget.MotionLayout>
