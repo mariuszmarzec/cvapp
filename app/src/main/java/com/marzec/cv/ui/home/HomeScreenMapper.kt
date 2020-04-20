@@ -28,15 +28,17 @@ class HomeScreenMapperImpl @Inject constructor(
         return HomeScreenContent(createHeaderModel(cv), createContent(cv))
     }
 
-    private fun createContent(cv: Cv): MutableList<ListItemView> {
+    private fun createContent(cv: Cv): List<ListItemView> {
         val items = mutableListOf<ListItemView>()
 
-        items += createHeaderModel(R.string.section_header_experience, showTopDivider = false)
-        items += createExperienceSection(cv.experience)
-        items += createHeaderModel(R.string.section_header_education, showTopDivider = true)
-        items += createEducationSection(cv.education)
-        items += createHeaderModel(R.string.section_header_skills, showTopDivider = true)
-        items += createSkillsModel(cv.skills)
+        items.apply {
+            add(createHeaderModel(R.string.section_header_experience, showTopDivider = false))
+            addAll(createExperienceSection(cv.experience))
+            add(createHeaderModel(R.string.section_header_education, showTopDivider = true))
+            addAll(createEducationSection(cv.education))
+            add(createHeaderModel(R.string.section_header_skills, showTopDivider = true))
+            add(createSkillsModel(cv.skills))
+        }
         return items
     }
 
@@ -124,7 +126,7 @@ class HomeScreenMapperImpl @Inject constructor(
     private fun createHeaderModel(
         @StringRes titleResId: Int,
         showTopDivider: Boolean
-    ): SectionHeaderDelegate.Model {
+    ): ListItemView {
         return SectionHeaderDelegate.Model(
             stringProvider.getString(titleResId),
             textColorResId = R.color.black,

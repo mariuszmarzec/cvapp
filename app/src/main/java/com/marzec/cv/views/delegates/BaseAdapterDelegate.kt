@@ -1,6 +1,5 @@
-package com.marzec.cv.ui.home
+package com.marzec.cv.views.delegates
 
-import com.marzec.cv.views.delegates.AdapterDelegate
 import com.marzec.cv.views.model.ListItemView
 
 abstract class BaseAdapterDelegate<V : ListItemView>(

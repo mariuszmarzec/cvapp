@@ -35,12 +35,14 @@ class HomePresenter @Inject constructor(
 
     private fun showFatalError(throwable: Throwable) {
         Log.e(this::class.simpleName, throwable.message, throwable)
-        this.view?.hideProgress()
-        this.view?.showError(
-            stringProvider.getString(R.string.error_dialog_title),
-            stringProvider.getString(R.string.error_dialog_message_fatal_error),
-            showRetry = false
-        )
+        view?.apply {
+            hideProgress()
+            showError(
+                stringProvider.getString(R.string.error_dialog_title),
+                stringProvider.getString(R.string.error_dialog_message_fatal_error),
+                showRetry = false
+            )
+        }
     }
 
     private fun onDataLoading(resource: Resource<Cv>) {
@@ -54,21 +56,25 @@ class HomePresenter @Inject constructor(
             }
             is Resource.Error -> {
                 Log.e(this::class.simpleName, resource.error.message, resource.error)
-                view?.hideProgress()
-                view?.showError(
-                    stringProvider.getString(R.string.error_dialog_title),
-                    stringProvider.getString(R.string.error_dialog_message_unknown_error_try_again),
-                    showRetry = true
-                )
+                view?.apply {
+                    hideProgress()
+                    showError(
+                        stringProvider.getString(R.string.error_dialog_title),
+                        stringProvider.getString(R.string.error_dialog_message_unknown_error_try_again),
+                        showRetry = true
+                    )
+                }
             }
         }
     }
 
     private fun showContent(cv: Cv) {
         val content = homeScreenMapper.mapItems(cv)
-        view?.hideProgress()
-        view?.setHeader(content.header)
-        view?.setContent(content.viewItems)
+        view?.apply {
+            hideProgress()
+            setHeader(content.header)
+            setContent(content.viewItems)
+        }
     }
 
     override fun onRetryDialogButtonClick() {

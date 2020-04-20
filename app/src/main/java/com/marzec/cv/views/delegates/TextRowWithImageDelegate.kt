@@ -8,7 +8,6 @@ import com.marzec.cv.R
 import com.marzec.cv.base.BaseViewHolder
 import com.marzec.cv.common.Image
 import com.marzec.cv.common.ImageLoader
-import com.marzec.cv.ui.home.BaseAdapterDelegate
 import com.marzec.cv.views.model.ListItemView
 import kotlinx.android.synthetic.main.view_holder_text_row_with_image.view.*
 
@@ -31,17 +30,19 @@ class TextRowWithImageDelegate(
         override fun onBind(item: ListItemView, position: Int) {
             require(item is Model)
 
-            imageLoader.loadImage(item.image, view.image)
+            with (view) {
+                imageLoader.loadImage(item.image, image)
 
-            view.topDivider.isVisible = item.showTopDivider
-            view.title.text = item.title
-            view.title.isVisible = item.title.isNotEmpty()
+                topDivider.isVisible = item.showTopDivider
+                title.text = item.title
+                title.isVisible = item.title.isNotEmpty()
 
-            view.subtitle.text = item.subtitle
-            view.subtitle.isVisible = item.subtitle.isNotEmpty()
+                subtitle.text = item.subtitle
+                subtitle.isVisible = item.subtitle.isNotEmpty()
 
-            view.description.text = item.text
-            view.description.isVisible = item.text.isNotEmpty()
+                description.text = item.text
+                description.isVisible = item.text.isNotEmpty()
+            }
         }
     }
 

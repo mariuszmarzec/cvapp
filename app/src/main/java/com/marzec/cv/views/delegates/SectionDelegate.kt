@@ -8,11 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.ColorRes
 import androidx.annotation.DimenRes
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import com.marzec.cv.R
 import com.marzec.cv.base.BaseViewHolder
-import com.marzec.cv.ui.home.BaseAdapterDelegate
 import com.marzec.cv.views.model.ListItemView
 import kotlinx.android.synthetic.main.view_holder_section_header.view.*
 
@@ -33,8 +31,8 @@ class SectionHeaderDelegate : BaseAdapterDelegate<SectionHeaderDelegate.Model>(R
         override fun onBind(item: ListItemView, position: Int) {
             require(item is Model)
             val context = view.context
-            view.topDivider.isVisible = item.showTopDivider
             with(view.text) {
+                topDivider.isVisible = item.showTopDivider
                 text = item.title
                 setTextColor(context.getColor(item.textColorResId))
                 setTextSize(
