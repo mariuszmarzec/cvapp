@@ -31,8 +31,8 @@ class SectionHeaderDelegate : BaseAdapterDelegate<SectionHeaderDelegate.Model>(R
         override fun onBind(item: ListItemView, position: Int) {
             require(item is Model)
             val context = view.context
+            view.topDivider.isVisible = item.showTopDivider
             with(view.text) {
-                topDivider.isVisible = item.showTopDivider
                 text = item.title
                 setTextColor(context.getColor(item.textColorResId))
                 setTextSize(
