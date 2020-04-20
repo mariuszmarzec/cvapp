@@ -12,9 +12,7 @@ import com.marzec.cv.api.model.CvDto
 import com.marzec.cv.ui.home.HomeActivity
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
-import io.reactivex.Observable
 import io.reactivex.Single
-import io.reactivex.SingleObserver
 import io.reactivex.SingleSource
 import junit.framework.Assert.assertTrue
 import org.hamcrest.CoreMatchers
