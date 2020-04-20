@@ -1,8 +1,13 @@
 <resources>
     <string name="app_name">Mariusz Marzec CV</string>
     <string name="cv">Curriculum Vitae</string>
-    <string name="section_header_expierence">Experience</string>
+    <string name="section_header_experience">Experience</string>
     <string name="section_header_education">Education</string>
     <string name="section_header_skills">Skills</string>
     <string name="time_period_present">Present</string>
+    <string name="error_dialog_title">Error</string>
+    <string name="error_dialog_message_unknown_error_try_again">Error has occurred. Do you want try again? Otherwise you can leave app.</string>
+    <string name="error_dialog_retry">Retry</string>
+    <string name="error_dialog_leave_app">Leave app</string>
+    <string name="error_dialog_message_fatal_error">Fatal error has occurred.</string>
 </resources>

@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
-import java.lang.StringBuilder
 
 internal class HomeScreenMapperImplTest {
 
@@ -99,7 +98,7 @@ internal class HomeScreenMapperImplTest {
 
         val expected = listOf(
             SectionHeaderDelegate.Model(
-                stringProvider.getString(R.string.section_header_expierence),
+                stringProvider.getString(R.string.section_header_experience),
                 textColorResId = R.color.black,
                 textSizeResId = R.dimen.xlarge_text_size,
                 bold = true,

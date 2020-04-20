@@ -1,10 +1,9 @@
 package com.marzec.cv.ui.home
 
-import com.marzec.cv.TestSchedulersRule
+import com.marzec.cv.*
+import com.marzec.cv.common.StringProvider
 import com.marzec.cv.domain.model.Resource
 import com.marzec.cv.interactors.CvInteractor
-import com.marzec.cv.stubCv
-import com.marzec.cv.stubHomeScreenContent
 import com.nhaarman.mockitokotlin2.*
 import io.reactivex.Observable
 import org.junit.jupiter.api.BeforeEach
@@ -16,6 +15,7 @@ internal class HomePresenterTest {
 
     private val cvInteractor: CvInteractor = mock()
     private val homeScreenMapper: HomeScreenMapper = mock()
+    private val stringProvider: StringProvider = MockStringProvider
 
     private val view: HomeScreenContract.View = mock()
 
@@ -25,7 +25,11 @@ internal class HomePresenterTest {
     fun setUp() {
         whenever(cvInteractor.observeCv()).thenReturn(Observable.never())
         whenever(homeScreenMapper.mapItems(any())).thenReturn(stubHomeScreenContent())
-        presenter = HomePresenter(cvInteractor, homeScreenMapper)
+        presenter = HomePresenter(
+            cvInteractor,
+            homeScreenMapper,
+            stringProvider
+        )
     }
 
     @Test
@@ -36,7 +40,11 @@ internal class HomePresenterTest {
 
         verify(cvInteractor).observeCv()
         verify(view).hideProgress()
-        verify(view).showError()
+        verify(view).showError(
+            stringProvider.getString(R.string.error_dialog_title),
+            stringProvider.getString(R.string.error_dialog_message_fatal_error),
+            showRetry = false
+        )
     }
 
     @Test
@@ -47,7 +55,28 @@ internal class HomePresenterTest {
 
         verify(cvInteractor).observeCv()
         verify(view).hideProgress()
-        verify(view).showError()
+        verify(view).showError(
+            stringProvider.getString(R.string.error_dialog_title),
+            stringProvider.getString(R.string.error_dialog_message_unknown_error_try_again),
+            showRetry = true
+        )
+    }
+
+    @Test
+    fun `observeCv | retry after error caused by resource error`() {
+        whenever(cvInteractor.observeCv()).thenReturn(Observable.just(Resource.Error(Throwable())))
+
+        presenter.attach(view)
+
+
+        presenter.onRetryDialogButtonClick()
+        verify(cvInteractor).observeCv()
+        verify(view, times(2)).hideProgress()
+        verify(view, times(2)).showError(
+            stringProvider.getString(R.string.error_dialog_title),
+            stringProvider.getString(R.string.error_dialog_message_unknown_error_try_again),
+            showRetry = true
+        )
     }
 
     @Test
@@ -84,5 +113,13 @@ internal class HomePresenterTest {
         verify(view).hideProgress()
         verify(view).setHeader(stubHomeScreenContent().header)
         verify(view).setContent(stubHomeScreenContent().viewItems)
+    }
+
+    @Test
+    fun `onNoDialogButtonClick | close view`() {
+        presenter.attach(view)
+        presenter.onNoDialogButtonClick()
+
+        verify(view).close()
     }
 }

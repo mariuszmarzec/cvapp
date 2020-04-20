@@ -9,14 +9,16 @@ interface HomeScreenContract {
 
     interface View : MvpView {
 
-        fun showError()
+        fun showError(title: String, message: String, showRetry: Boolean)
         fun showProgress()
         fun hideProgress()
         fun setHeader(header: HeaderModel)
         fun setContent(items: List<ListItemView>)
+        fun close()
     }
 
     interface Presenter : MvpPresenter<View> {
-
+        fun onRetryDialogButtonClick()
+        fun onNoDialogButtonClick()
     }
 }

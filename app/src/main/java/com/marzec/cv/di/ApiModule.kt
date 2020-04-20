@@ -1,6 +1,7 @@
 package com.marzec.cv.di
 
 import com.marzec.cv.api.CvApi
+import com.marzec.cv.domain.model.Cv
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -12,7 +13,7 @@ import javax.net.ssl.HostnameVerifier
 import javax.net.ssl.SSLSession
 
 @Module
-class ApiModule {
+open class ApiModule() {
 
     @Provides
     @Singleton
@@ -31,5 +32,5 @@ class ApiModule {
 
     @Provides
     @Singleton
-    fun provideCvApi(retrofit: Retrofit): CvApi = retrofit.create(CvApi::class.java)
+    open fun provideCvApi(retrofit: Retrofit): CvApi = retrofit.create(CvApi::class.java)
 }

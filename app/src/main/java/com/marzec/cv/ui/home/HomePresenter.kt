@@ -1,27 +1,46 @@
 package com.marzec.cv.ui.home
 
 import android.util.Log
+import com.marzec.cv.R
 import com.marzec.cv.base.BaseMvpPresenter
+import com.marzec.cv.common.StringProvider
 import com.marzec.cv.domain.model.Cv
 import com.marzec.cv.domain.model.Resource
 import com.marzec.cv.extensions.toMainThread
 import com.marzec.cv.interactors.CvInteractor
+import io.reactivex.subjects.PublishSubject
+import java.lang.Exception
+import java.util.*
 import javax.inject.Inject
 
 class HomePresenter @Inject constructor(
     private val cvInteractor: CvInteractor,
-    private val homeScreenMapper: HomeScreenMapper
+    private val homeScreenMapper: HomeScreenMapper,
+    private val stringProvider: StringProvider
 ) : BaseMvpPresenter<HomeScreenContract.View>(), HomeScreenContract.Presenter {
+
+    private val loadingTrigger = PublishSubject.create<Unit>()
 
     override fun attach(view: HomeScreenContract.View) {
         super.attach(view)
 
         cvInteractor.observeCv()
+            .repeatWhen { loadingTrigger }
             .toMainThread()
             .subscribeTillDetach(
                 onSuccess = this::onDataLoading,
-                onError = { throwable -> showError(throwable) }
+                onError = { throwable -> showFatalError(throwable) }
             )
+    }
+
+    private fun showFatalError(throwable: Throwable) {
+        Log.e(this::class.simpleName, throwable.message, throwable)
+        this.view?.hideProgress()
+        this.view?.showError(
+            stringProvider.getString(R.string.error_dialog_title),
+            stringProvider.getString(R.string.error_dialog_message_fatal_error),
+            showRetry = false
+        )
     }
 
     private fun onDataLoading(resource: Resource<Cv>) {
@@ -34,7 +53,13 @@ class HomePresenter @Inject constructor(
                 resource.content?.let { showContent(it) } ?: view?.showProgress()
             }
             is Resource.Error -> {
-                showError(resource.error)
+                Log.e(this::class.simpleName, resource.error.message, resource.error)
+                view?.hideProgress()
+                view?.showError(
+                    stringProvider.getString(R.string.error_dialog_title),
+                    stringProvider.getString(R.string.error_dialog_message_unknown_error_try_again),
+                    showRetry = true
+                )
             }
         }
     }
@@ -46,9 +71,12 @@ class HomePresenter @Inject constructor(
         view?.setContent(content.viewItems)
     }
 
-    private fun showError(error: Throwable) {
-        Log.e(this::class.simpleName, error.message, error)
-        view?.hideProgress()
-        view?.showError()
+    override fun onRetryDialogButtonClick() {
+        loadingTrigger.onNext(Unit)
     }
+
+    override fun onNoDialogButtonClick() {
+        view?.close()
+    }
+
 }

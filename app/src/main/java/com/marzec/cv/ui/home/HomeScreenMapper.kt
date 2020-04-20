@@ -31,7 +31,7 @@ class HomeScreenMapperImpl @Inject constructor(
     private fun createContent(cv: Cv): MutableList<ListItemView> {
         val items = mutableListOf<ListItemView>()
 
-        items += createHeaderModel(R.string.section_header_expierence, showTopDivider = false)
+        items += createHeaderModel(R.string.section_header_experience, showTopDivider = false)
         items += createExperienceSection(cv.experience)
         items += createHeaderModel(R.string.section_header_education, showTopDivider = true)
         items += createEducationSection(cv.education)
